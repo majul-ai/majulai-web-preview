@@ -88,7 +88,7 @@
 </header>
 
 <!-- ===== HERO ===== -->
-<section class="hero" data-screen-label="Inicio · Hero">
+<section class="hero dark" data-fx-net="dark" data-screen-label="Inicio · Hero">
   <div class="wrap">
     <p class="kicker reveal">IA aplicada · Especialistas en salud</p>
     <h1 class="t-xl reveal d1" style="margin-top:22px;white-space:normal;text-wrap:balance;max-width:24ch">Convertimos la inteligencia artificial <b>en valor medible para su organización</b></h1>
@@ -155,7 +155,7 @@
 </section>
 
 <!-- ===== MENSAJES CLAVE ===== -->
-<section class="section dark" data-screen-label="Inicio · Diferenciales">
+<section class="section dark" data-fx-net="dark" data-screen-label="Inicio · Diferenciales">
   <div class="wrap">
     <div class="ey reveal"><p class="kicker">Por qué MAJUL AI</p><hr class="rule"></div>
     <h2 class="t-lg reveal d1" style="margin-top:24px;max-width:22ch">Qué nos diferencia</h2>
@@ -184,18 +184,13 @@
       <button type="button" class="lc-nav prev" id="lcPrev" aria-label="Ver logos anteriores">‹</button>
       <div class="lc-viewport" id="lcViewport" tabindex="0" aria-label="Organizaciones y empresas que confían en MAJUL AI">
         <div class="lc-track">
-          <div class="logo-item"><img src="assets/logos/trim/roche.png" alt="Roche"></div>
           <div class="logo-item"><img src="assets/logos/trim/sanofi.png" alt="Sanofi"></div>
           <div class="logo-item"><img src="assets/logos/trim/astrazeneca.png" alt="AstraZeneca"></div>
-          <div class="logo-item"><img src="assets/logos/trim/novonordisk.png" alt="Novo Nordisk"></div>
           <div class="logo-item"><img src="assets/logos/trim/boehringer.png" alt="Boehringer Ingelheim"></div>
           <div class="logo-item"><img src="assets/logos/trim/abbott.png" alt="Abbott"></div>
           <div class="logo-item"><img src="assets/logos/trim/teva.png" alt="Teva"></div>
           <div class="logo-item"><img src="assets/logos/trim/bago.png" alt="Laboratorios Bagó"></div>
           <div class="logo-item"><img src="assets/logos/trim/gador.png" alt="Gador"></div>
-          <div class="logo-item"><img src="assets/logos/trim/casasco.png" alt="Casasco"></div>
-          <div class="logo-item"><img src="assets/logos/trim/montpellier.png" alt="Montpellier"></div>
-          <div class="logo-item"><img src="assets/logos/trim/baliarda.png" alt="Baliarda"></div>
           <div class="logo-item"><img src="assets/logos/trim/labbeta.png" alt="Laboratorios Beta"></div>
           <div class="logo-item"><img src="assets/logos/trim/adium.png" alt="Adium"></div>
           <div class="logo-item"><img src="assets/logos/trim/eurofarma.png" alt="Eurofarma"></div>
@@ -207,8 +202,9 @@
           <div class="logo-item"><img src="assets/logos/trim/aafh.png" alt="Asociación Argentina de Farmacéuticos de Hospital"></div>
           <div class="logo-item"><img src="assets/logos/trim/faardit.png" alt="FAARDIT · Federación Argentina de Radiología"></div>
           <div class="logo-item"><img src="assets/logos/trim/afacimera.png" alt="AFACIMERA"></div>
-          <div class="logo-item"><img src="assets/logos/trim/sadam.png" alt="SADAM · Asociación Argentina de Auditoría y Gestión Sanitaria"></div>
           <div class="logo-item"><img src="assets/logos/trim/sapycc.png" alt="Sociedad de Anatomía Patológica y Citopatología de Córdoba"></div>
+          <div class="logo-item"><img src="assets/logos/trim/asacam.png" alt="ASACAM · Asociación de Auditoría y Calidad de Atención Médica de Córdoba"></div>
+          <div class="logo-item"><img src="assets/logos/trim/cao.png" alt="CAO · Consejo Argentino de Oftalmología"></div>
           <div class="logo-item"><img src="assets/logos/trim/cluster-iish.png" alt="Clúster de Investigación e Innovación en Salud Humana"></div>
           <div class="logo-item"><img src="assets/logos/trim/fepafem.png" alt="FEPAFEM · PAFAMS"></div>
           <div class="logo-item"><img src="assets/logos/trim/bologna.png" alt="Università di Bologna"></div>
@@ -236,8 +232,24 @@
   }
   function step(){var it=vp.querySelector('.logo-item');return it?it.offsetWidth+22:230;}
   function page(){return Math.max(step(),Math.floor(vp.clientWidth/step())*step());}
-  prev&&prev.addEventListener('click',function(){vp.scrollBy({left:-page(),behavior:'smooth'});});
-  next&&next.addEventListener('click',function(){vp.scrollBy({left:page(),behavior:'smooth'});});
+  var nudgeT=null;
+  function manualScroll(dir){
+    paused=true;
+    clearTimeout(nudgeT);
+    var start=vp.scrollLeft, target=start+dir*page(), t0=null, dur=420;
+    function anim(t){
+      if(t0===null)t0=t;
+      var k=Math.min(1,(t-t0)/dur);
+      var e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      vp.scrollLeft=start+(target-start)*e;
+      normalize();
+      if(k<1)requestAnimationFrame(anim);
+      else nudgeT=setTimeout(function(){paused=false;},200);
+    }
+    requestAnimationFrame(anim);
+  }
+  prev&&prev.addEventListener('click',function(){manualScroll(-1);});
+  next&&next.addEventListener('click',function(){manualScroll(1);});
   /* arrastrar para desplazar */
   var down=false,sx=0,sl=0,moved=false;
   vp.addEventListener('pointerdown',function(e){down=true;moved=false;sx=e.clientX;sl=vp.scrollLeft;vp.classList.add('dragging');try{vp.setPointerCapture(e.pointerId);}catch(_){}});
@@ -371,7 +383,7 @@
 </section>
 
 <!-- ===== CTA BAND ===== -->
-<section class="section tight dark ctaband" data-screen-label="Inicio · CTA">
+<section class="section tight dark ctaband" data-fx-net="dark" data-screen-label="Inicio · CTA">
   <img class="sym" src="assets/logo-wht-symbol.png" alt="">
   <div class="wrap">
     <div>
@@ -388,7 +400,7 @@
     <div class="foot-grid">
       <div>
         <img class="lk" src="assets/logo-gray-lockup-trim.png" alt="MAJUL AI">
-        <p class="blurb">Inteligencia artificial para tu organización. Especialistas en el ecosistema de salud.</p>
+        <p class="blurb">Inteligencia artificial para su organización. Especialistas en el ecosistema de salud.</p>
       </div>
       <div>
         <h4>Navegación</h4>
@@ -428,11 +440,12 @@
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2025 MAJUL AI · Todos los derechos reservados</span>
+    <span><span style="font-size:1.18em;vertical-align:-.04em">®</span> 2025 MAJUL AI · Todos los derechos reservados</span>
     <span>Inteligencia artificial aplicada a las ciencias</span>
   </div>
 </footer>
 
 <script src="site.js"></script>
+<script src="particles.js"></script>
 </body>
 </html>
