@@ -31,7 +31,7 @@
   }
   // Fake form
   function initForm(){
-    var f=document.querySelector('form[data-netlify]');
+    var f=document.getElementById('contact-form');
     if(!f)return;
     function showOk(){
       var ok=f.querySelector('.form-ok');
@@ -41,13 +41,15 @@
       e.preventDefault();
       var btn=f.querySelector('button[type="submit"]');
       if(btn)btn.disabled=true;
-      fetch('/',{
+      var data={};
+      new FormData(f).forEach(function(v,k){data[k]=v;});
+      fetch('https://formsubmit.co/ajax/info@majul.ai',{
         method:'POST',
-        headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:new URLSearchParams(new FormData(f)).toString()
-      }).then(function(r){
-        if(!r.ok)throw new Error('status '+r.status);
-        showOk();
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify(data)
+      }).then(function(r){return r.json();}).then(function(res){
+        if(res&&(res.success===true||res.success==='true')){showOk();}
+        else{throw new Error('fail');}
       }).catch(function(){
         if(btn)btn.disabled=false;
         alert('No pudimos enviar el mensaje. Por favor escribinos directamente a info@majul.ai');
