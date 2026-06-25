@@ -1,0 +1,26 @@
+# MAJUL AI
+
+> Consultora de inteligencia artificial aplicada a las ciencias, especializada en el ecosistema de salud. Detectamos oportunidades concretas de IA y las llevamos a producción con método y validación científica.
+
+MAJUL AI es una consultora con sede en Argentina que ayuda a empresas e instituciones —con foco en el sector salud— a aplicar inteligencia artificial a problemas reales y medibles. El enfoque es práctico, humano y estratégico: nunca "IA por IA", siempre con un objetivo concreto.
+
+## Servicios
+- Consultoría estratégica en IA
+- Desarrollo de soluciones de IA a medida
+- Data & Analytics
+- Investigación y Desarrollo (I+D)
+- Conferencias y keynotes
+- Capacitación y cursos para equipos
+
+## Páginas
+- [Inicio](https://majul.ai/): Qué hacemos, para quién y nuestro enfoque.
+- [Servicios](https://majul.ai/servicios.html): Detalle de cada servicio de IA aplicada.
+- [Nosotros](https://majul.ai/nosotros.html): El equipo (Dr. Enrique Majul y Dra. Nahir Majul) y la metodología.
+- [Cursos](https://majul.ai/cursos.html): Formación práctica en inteligencia artificial.
+- [Guía](https://majul.ai/guia.html): Guía esencial sobre IA aplicada a la salud.
+- [Contacto](https://majul.ai/contacto.html): Para solicitar un diagnóstico, una conferencia o una capacitación.
+
+## Contacto
+- Email: info@majul.ai
+- LinkedIn: https://www.linkedin.com/company/majul-ai/
+- Instagram: https://www.instagram.com/majul.ai/
