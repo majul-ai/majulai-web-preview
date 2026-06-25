@@ -31,12 +31,27 @@
   }
   // Fake form
   function initForm(){
-    var f=document.querySelector('form[data-mock]');
+    var f=document.querySelector('form[data-netlify]');
     if(!f)return;
+    function showOk(){
+      var ok=f.querySelector('.form-ok');
+      if(ok){ok.style.display='flex';var ff=f.querySelector('.form-fields');if(ff)ff.style.display='none';}
+    }
     f.addEventListener('submit',function(e){
       e.preventDefault();
-      var ok=f.querySelector('.form-ok');
-      if(ok){ok.style.display='flex';f.querySelector('.form-fields').style.display='none';}
+      var btn=f.querySelector('button[type="submit"]');
+      if(btn)btn.disabled=true;
+      fetch('/',{
+        method:'POST',
+        headers:{'Content-Type':'application/x-www-form-urlencoded'},
+        body:new URLSearchParams(new FormData(f)).toString()
+      }).then(function(r){
+        if(!r.ok)throw new Error('status '+r.status);
+        showOk();
+      }).catch(function(){
+        if(btn)btn.disabled=false;
+        alert('No pudimos enviar el mensaje. Por favor escribinos directamente a info@majul.ai');
+      });
     });
   }
   // Scroll cue removed — addressed the false-bottom by tightening section spacing instead.

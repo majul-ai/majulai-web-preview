@@ -64,28 +64,30 @@
       <!-- FORM -->
       <div class="reveal">
         <h2 class="t-md" style="margin-bottom:28px">Escríbanos</h2>
-        <form data-mock>
+        <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contacto">
+          <p hidden aria-hidden="true"><label>No completar: <input name="bot-field"></label></p>
           <div class="form-fields">
             <div class="form">
               <div class="field">
                 <label for="nombre">Nombre y apellido</label>
-                <input id="nombre" type="text" placeholder="Su nombre" required>
+                <input id="nombre" name="nombre" type="text" placeholder="Su nombre" required>
               </div>
               <div class="field">
                 <label for="org">Organización</label>
-                <input id="org" type="text" placeholder="Empresa o institución">
+                <input id="org" name="organizacion" type="text" placeholder="Empresa o institución">
               </div>
               <div class="field">
                 <label for="email">Email</label>
-                <input id="email" type="email" placeholder="nombre@correo.com" required>
+                <input id="email" name="email" type="email" placeholder="nombre@correo.com" required>
               </div>
               <div class="field">
                 <label for="tel">Teléfono <span style="color:var(--gris);font-weight:400">(opcional)</span></label>
-                <input id="tel" type="tel" placeholder="+54 ...">
+                <input id="tel" name="telefono" type="tel" placeholder="+54 ...">
               </div>
               <div class="field full">
                 <label for="motivo">¿En qué podemos ayudarle?</label>
-                <select id="motivo">
+                <select id="motivo" name="motivo">
                   <option>Solicitar un diagnóstico de IA</option>
                   <option>Desarrollar una solución a medida</option>
                   <option>Data &amp; Analytics</option>
@@ -97,7 +99,7 @@
               </div>
               <div class="field full">
                 <label for="msg">Su mensaje</label>
-                <textarea id="msg" placeholder="Cuéntenos brevemente su contexto, su objetivo o el desafío que quiere resolver."></textarea>
+                <textarea id="msg" name="mensaje" placeholder="Cuéntenos brevemente su contexto, su objetivo o el desafío que quiere resolver."></textarea>
               </div>
             </div>
             <button type="submit" class="btn btn-p" style="margin-top:24px">Enviar mensaje <span class="arw">→</span></button>
