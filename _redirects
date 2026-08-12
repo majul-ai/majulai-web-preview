@@ -1,0 +1,10 @@
+# Redirecciones 301 de URLs del sitio anterior (pre-migración) que Google
+# Search Console reporta como 404, hacia sus equivalentes actuales.
+/política-de-privacidad          /terminos.html   301
+/descargar-guía                  /guia.html       301
+/items/cursos-y-capacitaciones-  /cursos.html     301
+/en/cursos                       /cursos.html     301
+/en/nosotros                     /nosotros.html   301
+
+# Forzar dominio apex (sin www), que es el que usan el canonical y el sitemap.
+https://www.majul.ai/*  https://majul.ai/:splat  301!
